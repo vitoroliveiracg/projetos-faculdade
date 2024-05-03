@@ -76,4 +76,7 @@ java Babuinos [quantidade de babuinos]
 
 > é possível que algum problema ocorre nessa etapa, e você poderá substituir o código acima por:
 > 
-> `java Babuinos.class [quantidade de babuinos]`. 
+> `java Babuinos.class [quantidade de babuinos]`.
+
+### Referência
+[Oracle Java Concorrencia](https://docs.oracle.com/javase/tutorial/essential/concurrency/)
