@@ -1,82 +1,42 @@
-# Passagem de Babuínos
+# Uma abordagem de esteganografia com inteligência artificial
 
-Este é um projeto em Java que simula a travessia de babuínos em um desfiladeiro montanhoso, evitando situações de deadlock. 
-O projeto é uma brincadeira do professor para mostrar que até babuinos agricanos conseguiriam aprender sobre deadlocks.
+Este é um projeto feito para a disciplina de Segurança com o professor Nilson Mori, com o intuito de apresentar uma nova abordagem
+para a esteganografia textual utilizando as inteligências artificiais do mercado, nesse caso, o Gemini✨.
 
-## Descrição
+## Info
 
-O experimento consiste em babuínos atravessando um desfiladeiro utilizando uma corda estendida de uma extremidade à outra. 
-Os babuínos podem atravessar o desfiladeiro apenas na mesma direção. 
-No entanto, quando babuínos em direções opostas tentam atravessar simultaneamente, pode ocorrer um deadlock. 
-Para evitar essa situação, os babuínos devem esperar até que a corda esteja livre e nenhum outro babuíno esteja atravessando na direção oposta.
+O modelo proposto utiliza Inteligência
+Artificial para mesclar o texto original com um
+texto de base que será gerado.
 
 > [!NOTE]
-> Projeto feito durando o 6º período, na disciplina de programação concorrente e paralela.
+> Projeto feito durando o 6º período, na disciplina de segurança.
 
-## Especificação
+## Compilação
 
 O programa funciona da seguinte maneira:
 
-1. **Execução:** O programa é executável no terminal Linux. As instruções de compilação estão na próxima seção.
-
-2. **Parâmetros:** O programa recebe como parâmetro um número inteiro indicando quantos babuínos serão gerados para cada lado da travessia.
-
-3. **Threads Auxiliares:** Duas threads auxiliares chamadas "GeradorBabuinosOeste" e "GeradorBabuinosLeste" são responsáveis por gerar continuamente os babuínos indo para cada direção até a quantidade especificada. Cada babuíno é gerado em um intervalo de tempo aleatório entre 1ms e 4ms.
-
-4. **Numeração dos Babuínos:** Babuínos indo em direção a oeste são numerados a partir de números ímpares começando em 1, enquanto babuínos indo a leste são numerados a partir de números pares começando em 0.
-
-5. **Threads Individuais:** Cada babuíno gerado é uma thread. Portanto, se houver 1000 babuínos para atravessar, serão criadas 2000 threads.
-
-6. **Travessia Segura:** Não pode haver babuínos usando a corda em direções diferentes ao mesmo tempo.
-
-7. **Procedimentos:** Cada babuíno chama o procedimento `babuino_quer_atravessar` para verificar se pode atravessar a corda. Se permitido, o babuíno chama o procedimento `pegar_corda` para iniciar a travessia e `soltar_corda` ao terminar.
-
-8. **Informações Impressas:** O programa imprime informações sobre o estado dos babuínos durante a travessia, incluindo quando um babuíno está querendo usar a corda, quando ele começa a atravessar e quando termina.
-
-### Exemplo de Saída
-
+**Codificar:** Para codificar um texto basta rodar o script 'codificar.py', passar o texto no qual será escondido, um tema e então esperar, sua chave para decodificar será fornecida junto com um arquivo de texto com o texto final. Exemplo:
 ```
-Início da simulação: 3 babuínos para cada lado
-Babuíno 0 quer atravessar para LESTE
-Babuíno 1 quer atravessar para OESTE
-Babuíno 2 quer atravessar para LESTE
-Babuíno 4 quer atravessar para LESTE
-Babuíno 3 quer atravessar para OESTE
-Babuíno 5 quer atravessar para OESTE
->>> BABUÍNO 0 está atravessando para LESTE
->>> BABUÍNO 2 está atravessando para LESTE
- BABUÍNO 0 chegou!
- BABUÍNO 2 chegou!
->>> BABUÍNO 1 está atravessando para OESTE
- BABUÍNO 1 chegou!
->>> BABUÍNO 3 está atravessando para OESTE
->>> BABUÍNO 5 está atravessando para OESTE
- BABUÍNO 4 chegou!
- BABUÍNO 5 chegou!
->>> BABUÍNO 4 está atravessando para LESTE
- BABUÍNO 5 chegou!
-Fim da simulação
+python codificar.py
 ```
 
-## Modo de Compilação
-
-Para compilar o programa, siga os seguintes passos:
-
-1. **Código:** Execute o seguinte comando para compilar o arquivo `Babuinos.java`:
-
+**Decodificar:** Para decodificar o arquivo final de volta para o texto original basta rodar o script 'decodificar.py' com sua respectiva chave e arquivo de texto.
+Exemplo:
 ```
-javac Babuinos.java
+python decodificar.py chave nomeArquivo.txt
 ```
 
-2. **Execução:** Após a compilação, execute o programa da seguinte maneira, substituindo `[quantidade de babuinos]` pelo número desejado de babuínos:
+## Informações importantes
+
+Vale ressaltar que você precisará [criar](https://ai.google.dev/gemini-api/docs/api-key?hl=pt-br) e informar uma chave para a aplicação funcionar. No arquivo 'codificar.py'
+informe sua chave no campo mostrado abaixo (api_key):
 
 ```
-java Babuinos [quantidade de babuinos]
+gemini = tools.ComunicationGemini(api_key, 30, "gemini-1.5-pro" )
 ```
 
-> é possível que algum problema ocorre nessa etapa, e você poderá substituir o código acima por:
-> 
-> `java Babuinos.class [quantidade de babuinos]`.
+Os outros dois campos da inicialização de 'CominicationGemini' definem respectivamente o tempo de espera entre 
+as requisições e o modelo do Gemini escolhido.
 
-### Referência
-[Oracle Java Concorrencia](https://docs.oracle.com/javase/tutorial/essential/concurrency/)
+Acesse [Google Gemini Models](https://ai.google.dev/gemini-api/docs/models/gemini?hl=pt-br) para saber mais sobre os modelos do Gemini que existem.
